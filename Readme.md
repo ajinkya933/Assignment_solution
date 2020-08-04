@@ -1,6 +1,6 @@
 ### Solution
 
-Attached is the jupyter notebook with detailed steps taken to solve the assignment.
+Attached is the jupyter notebook (solution-2.ipynb) with detailed steps taken to solve the assignment.
 also attached is sample image output in png format.
 
 ### The output of the ipynb is as follows.
