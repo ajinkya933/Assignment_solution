@@ -102,7 +102,7 @@ mlflow.log_artifact("./selected_principle_components.csv")
 
 
 ########################################################
-#                Log Principle components 
+#                Log KNN
 ########################################################
 
 from sklearn.decomposition import PCA
@@ -122,6 +122,13 @@ labels = kmeans.predict(q)
 
 mlflow.log_metric("PCA", 3)
 mlflow.log_metric("Knn_clusters",4)
+
+
+
+
+########################################################
+#                Log image output
+########################################################
 
 index = final.index.tolist() 
 a= np.array(index)
