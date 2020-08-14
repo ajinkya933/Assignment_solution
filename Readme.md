@@ -9,8 +9,8 @@ shows how to migrate data and keep a track of it using MLflow.
 
 ### The output of the ipynb is as follows.
 
-Mumbai tile classified in 3 classes :
-![alt text](https://github.com/ajinkya933/Assignment_solution/blob/master/mumbai.png)
+Mumbai tile classified in 3 classes : see mumbai.png
+```![alt text](https://github.com/ajinkya933/Assignment_solution/blob/master/mumbai.png)```
 
-Crop tile classified in 8 sub catagory:
-![alt text](https://github.com/ajinkya933/Assignment_solution/blob/master/crops.png)
+Crop tile classified in 8 sub catagory: see crops.png
+```![alt text](https://github.com/ajinkya933/Assignment_solution/blob/master/crops.png)```
