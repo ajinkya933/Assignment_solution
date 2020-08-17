@@ -34,10 +34,10 @@ MLflow Experiment run:
 ![alt text](https://github.com/ajinkya933/Assignment_solution/blob/master/images/2.png)
 
 
-### The output of the ipynb is as follows.
+### Mysql data stored on backend for the above 2 runs:
 
-Mumbai tile classified in 3 classes : see mumbai.png
-```![alt text](https://github.com/ajinkya933/Assignment_solution/blob/master/images/mumbai.png)```
+![alt text](https://github.com/ajinkya933/Assignment_solution/blob/master/images/sql.png)
 
-Crop tile classified in 8 sub catagory: see crops.png
-```![alt text](https://github.com/ajinkya933/Assignment_solution/blob/master/images/crops.png)```
+
+* SQL table details and running MLflow details are mentioned in PDF stored at Assignment_solution/mlflow_integration/Mlflow_assignment
+
