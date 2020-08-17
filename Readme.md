@@ -28,6 +28,11 @@ MLflow Dashbord:
 
 ![alt text](https://github.com/ajinkya933/Assignment_solution/blob/master/images/dashbord.png)
 
+MLflow Experiment run:
+
+![alt text](https://github.com/ajinkya933/Assignment_solution/blob/master/images/1.png)
+![alt text](https://github.com/ajinkya933/Assignment_solution/blob/master/images/2.png)
+
 
 ### The output of the ipynb is as follows.
 
