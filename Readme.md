@@ -39,5 +39,6 @@ MLflow Experiment run:
 ![alt text](https://github.com/ajinkya933/Assignment_solution/blob/master/images/sql.png)
 
 
-* SQL table details and running MLflow details are mentioned in PDF stored at Assignment_solution/mlflow_integration/Mlflow_assignment
+
+### SQL table details and running MLflow details are mentioned in PDF stored at Assignment_solution/mlflow_integration/Mlflow_assignment
 
