@@ -10,10 +10,17 @@ Clouds Tile: (cloud.ipynb)
 ```
 ### ML Flow
 
-```solution_mlflow.py``` 
+Migrate your data t0 MLflow + MySql using
 
-shows how to migrate data to ML Flow and keep a track of it using MLflow.
+``` Assignment_solution/mlflow_integration/mlflow_assignment.ipynb ``` 
 
+Using above script we can keep track of all the runs of a particular experiment
+
+Example run:
+
+Mumbai tile
+    -- run1
+    -- run2
 
 ### The output of the ipynb is as follows.
 
