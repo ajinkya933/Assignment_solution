@@ -22,7 +22,7 @@ Mumbai tile
 ```
 
 I change a matric in ML experiment and run that experiment,name this experiment(run1)
-Whenewhere I change a metric in experiment it forms a new run
+whenever I change a metric in experiment it forms a new run
 
 
 ### The output of the ipynb is as follows.
