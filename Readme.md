@@ -1,8 +1,13 @@
-### Solution
+# Solution
 
-Attached is the jupyter notebook (solution-2.ipynb) with detailed steps taken to solve the assignment.
-also attached is sample image output in png format.
+### Attached is the jupyter notebook 
+```
+Mumbai Tile: (solution-2.ipynb) 
 
+Crop Tile: (crop_segment.ipynb)
+
+Clouds Tile: (cloud.ipynb)
+```
 ### ML Flow
 
 ```solution_mlflow.py``` 
