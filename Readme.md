@@ -17,11 +17,11 @@ Migrate your data t0 MLflow + MySql using
 Using above script we can keep track of all the runs of a particular experiment
 
 Example run:
-
+```
 Mumbai tile
     -- run1
     -- run2
-
+```
 ### The output of the ipynb is as follows.
 
 Mumbai tile classified in 3 classes : see mumbai.png
