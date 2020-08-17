@@ -10,6 +10,8 @@ Clouds Tile: (cloud.ipynb)
 ```
 ### ML Flow
 
+### SQL table details and running MLflow details are mentioned in PDF stored at mlflow_integration/Mlflow_assignment
+
 Keep all logs of your data on MLflow + MySql(backend) using
 
 ``` Assignment_solution/mlflow_integration/mlflow_assignment.ipynb ``` 
@@ -40,5 +42,4 @@ MLflow Experiment run:
 
 
 
-### SQL table details and running MLflow details are mentioned in PDF stored at Assignment_solution/mlflow_integration/Mlflow_assignment
 
