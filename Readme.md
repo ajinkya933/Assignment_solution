@@ -16,6 +16,15 @@ Keep all logs of your data on MLflow + MySql(backend) using
 
 ``` Assignment_solution/mlflow_integration/mlflow_assignment.ipynb ``` 
 
+### Design considerations before designing MLflow:
+```
+Parameters (via mlflow.log_param() ). Parameters are variables that you change or tweak when tuning your model.
+
+Metrics (using mlflow.log_metric() ). Metrics are values that you want to measure as a result of tweaking your parameters. - Typical metrics that are tracked can be items like F1 score, RMSE, MAE etc.
+
+Artifacts (using mlflow.log_artifact() ). Artifacts are any other items that you wish to store. Typical artifacts that we can keep track of are pickled models , PNGs of graphs, lists of feature importance variables …
+```
+
 Example run:
 ```
 Mumbai tile
