@@ -1,0 +1,121 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  generateName: file-writer-test-
+  annotations: {pipelines.kubeflow.org/kfp_sdk_version: 1.0.4, pipelines.kubeflow.org/pipeline_compilation_time: '2020-11-10T09:24:31.395620',
+    pipelines.kubeflow.org/pipeline_spec: '{"description": "Pipeline that writes and
+      reads from file", "inputs": [{"default": "/mnt", "name": "data_path", "optional":
+      true}], "name": "file writer test"}'}
+  labels: {pipelines.kubeflow.org/kfp_sdk_version: 1.0.4}
+spec:
+  entrypoint: file-writer-test
+  templates:
+  - name: create-volume
+    resource:
+      action: create
+      manifest: |
+        apiVersion: v1
+        kind: PersistentVolumeClaim
+        metadata:
+          name: '{{workflow.name}}-data-volume'
+        spec:
+          accessModes:
+          - ReadWriteMany
+          resources:
+            requests:
+              storage: 1Gi
+    outputs:
+      parameters:
+      - name: create-volume-manifest
+        valueFrom: {jsonPath: '{}'}
+      - name: create-volume-name
+        valueFrom: {jsonPath: '{.metadata.name}'}
+      - name: create-volume-size
+        valueFrom: {jsonPath: '{.status.capacity.storage}'}
+  - name: file-writer-test
+    inputs:
+      parameters:
+      - {name: data_path}
+    dag:
+      tasks:
+      - {name: create-volume, template: create-volume}
+      - name: print-prediction
+        template: print-prediction
+        dependencies: [create-volume, train]
+        arguments:
+          parameters:
+          - {name: create-volume-name, value: '{{tasks.create-volume.outputs.parameters.create-volume-name}}'}
+          - {name: data_path, value: '{{inputs.parameters.data_path}}'}
+      - name: train
+        template: train
+        dependencies: [create-volume]
+        arguments:
+          parameters:
+          - {name: create-volume-name, value: '{{tasks.create-volume.outputs.parameters.create-volume-name}}'}
+          - {name: data_path, value: '{{inputs.parameters.data_path}}'}
+  - name: print-prediction
+    container:
+      args: [cat, '{{inputs.parameters.data_path}}/test_data.txt']
+      image: library/bash:4.4.23
+      volumeMounts:
+      - {mountPath: '{{inputs.parameters.data_path}}', name: create-volume}
+    inputs:
+      parameters:
+      - {name: create-volume-name}
+      - {name: data_path}
+    volumes:
+    - name: create-volume
+      persistentVolumeClaim: {claimName: '{{inputs.parameters.create-volume-name}}'}
+  - name: train
+    container:
+      args: [--data-path, '{{inputs.parameters.data_path}}']
+      command:
+      - python3
+      - -u
+      - -c
+      - |
+        def train(data_path):
+            '''
+                Download test.tif file from google drive and save it at location of {data_path}
+            '''
+            import tensorflow
+
+            data='Geojson export is complete'
+            # Save test data file
+            with open(f'{data_path}/test_data.txt', 'w') as f:
+                f.write(data)
+
+        import argparse
+        _parser = argparse.ArgumentParser(prog='Train', description='Download test.tif file from google drive and save it at location of {data_path}')
+        _parser.add_argument("--data-path", dest="data_path", type=str, required=True, default=argparse.SUPPRESS)
+        _parsed_args = vars(_parser.parse_args())
+
+        _outputs = train(**_parsed_args)
+      image: tensorflow/tensorflow:latest
+      volumeMounts:
+      - {mountPath: '{{inputs.parameters.data_path}}', name: create-volume}
+    inputs:
+      parameters:
+      - {name: create-volume-name}
+      - {name: data_path}
+    volumes:
+    - name: create-volume
+      persistentVolumeClaim: {claimName: '{{inputs.parameters.create-volume-name}}'}
+    metadata:
+      annotations: {pipelines.kubeflow.org/component_spec: '{"description": "Download
+          test.tif file from google drive and save it at location of {data_path}",
+          "implementation": {"container": {"args": ["--data-path", {"inputValue":
+          "data_path"}], "command": ["python3", "-u", "-c", "def train(data_path):\n    ''''''\n        Download
+          test.tif file from google drive and save it at location of {data_path}\n    ''''''\n    import
+          tensorflow\n\n    data=''Geojson export is complete''\n    # Save test data
+          file\n    with open(f''{data_path}/test_data.txt'', ''w'') as f:\n        f.write(data)\n\nimport
+          argparse\n_parser = argparse.ArgumentParser(prog=''Train'', description=''Download
+          test.tif file from google drive and save it at location of {data_path}'')\n_parser.add_argument(\"--data-path\",
+          dest=\"data_path\", type=str, required=True, default=argparse.SUPPRESS)\n_parsed_args
+          = vars(_parser.parse_args())\n\n_outputs = train(**_parsed_args)\n"], "image":
+          "tensorflow/tensorflow:latest"}}, "inputs": [{"name": "data_path"}], "name":
+          "Train"}', pipelines.kubeflow.org/component_ref: '{}'}
+  arguments:
+    parameters:
+    - {name: data_path, value: /mnt}
+  serviceAccountName: pipeline-runner
